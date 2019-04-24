@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -112,9 +116,9 @@ public class UserController {
 		LoginServlet op = new LoginServletImpl();
 		System.out.println(phone+" : 号码是否存在?");
 		if (op.PhoneExist(phone)) {
-			return phone+" : 存在";
+			return "号码已经存在";
 		} else
-			return phone+": 不存在";
+			return "号码不存在";
 	}
 	@RequestMapping("/adduser")
 	@ResponseBody
@@ -169,5 +173,7 @@ public class UserController {
 			return req.getParameter("phonenumber")+"：更新用户信息失败";
 	}
 
+	
+	
 
 }

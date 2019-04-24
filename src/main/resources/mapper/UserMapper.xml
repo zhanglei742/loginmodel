@@ -15,7 +15,7 @@
     </select>
     <!--插入手机号，密码 -->
     <insert id="addUser_phone_pwd" parameterType="com.loginmodel.loginmodel.domain.User">
-   insert into users(phonenumber,pwd,name) values(#{phonenumber},#{pwd},#{name})
+   insert into users (phonenumber,pwd,name) values(#{phonenumber},#{pwd},#{name})
     </insert>
     <!-- 更新用户名 -->
     <update id="updateUser_name" parameterType="com.loginmodel.loginmodel.domain.User">
