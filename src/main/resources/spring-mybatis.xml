@@ -18,6 +18,10 @@
         <!-- 注册userMapper.xml文件， 
         userMapper.xml位于com.loginmodel.mapping这个包下，所以resource写成com/loginmodel/mapping/usermapper.xml-->
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/ItemMapper.xml"/>
+        <mapper resource="mapper/ItemchildsMapper.xml"/>
+        <mapper resource="mapper/ItemsourceMapper.xml"/>
+        <mapper resource="mapper/SourcemenuMapper.xml"/>
     </mappers>
     
 </configuration>

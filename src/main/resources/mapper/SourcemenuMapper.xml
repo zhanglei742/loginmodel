@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SourcemenuMapper">
+  <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.Sourcemenu">
+    <result column="menukey" jdbcType="INTEGER" property="menukey" />
+    <result column="menuname" jdbcType="VARCHAR" property="menuname" />
+    <result column="menuurl" jdbcType="VARCHAR" property="menuurl" />
+  </resultMap>
+  <insert id="insert" parameterType="com.loginmodel.loginmodel.domain.Sourcemenu">
+    insert into sourcemenu (menukey, menuname, menuurl
+      )
+    values (#{menukey,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR}, #{menuurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loginmodel.loginmodel.domain.Sourcemenu">
+    insert into sourcemenu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menukey != null">
+        menukey,
+      </if>
+      <if test="menuname != null">
+        menuname,
+      </if>
+      <if test="menuurl != null">
+        menuurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menukey != null">
+        #{menukey,jdbcType=INTEGER},
+      </if>
+      <if test="menuname != null">
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="menuurl != null">
+        #{menuurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

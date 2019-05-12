@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+		<!--mysql的jar包存放的真实路径（绝对路径）  -->
+    <classPathEntry location="E:\(2019-)ExperimentalSpace\loginmodel\lib\mysql-connector-java-8.0.15.jar" />
+    <context id="context1">
+        <!-- 生成的pojo，将implements Serializable -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        	<!-- 连接的jdbc包名 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+            connectionURL="jdbc:mysql://localhost/mydbfortest?&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8&amp;useSSL=false"
+            userId="ZWY" password="a5188216QWE." />
+            <!-- 生成的实体类存放的目标路径 -->
+        <javaModelGenerator targetPackage="com.loginmodel.loginmodel.domain"
+            targetProject="loginmodel" />
+            <!--数据库映射 mapper  -->
+        <sqlMapGenerator targetPackage="com.loginmodel.loginmodel.mapper"
+            targetProject="loginmodel" />
+            <!--生成的接口类  -->
+        <javaClientGenerator targetPackage="com.loginmodel.loginmodel.service"
+            targetProject="loginmodel" type="XMLMAPPER" />
+            
+            <!--需要生成数据库的哪些表格，注意5个false，不写则默认true，会生成额外的example类、方法，很乱  -->
+        <!-- <table tableName="item"
+         	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+        <table tableName="itemchilds"
+         	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+        <table  tableName="itemsource"
+         enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+        <table  tableName="sourcemenu"
+         enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table> -->
+    </context>
+</generatorConfiguration>

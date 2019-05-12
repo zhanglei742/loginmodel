@@ -190,7 +190,7 @@ public class DBhelper {
     }
     public static void UpdateUserInfo(User user)
     {
-        String resource = "spring-mybatis.xml";
+        //String resource = "spring-mybatis.xml";
         InputStream is = DBhelper.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
         SqlSession session = sessionFactory.openSession();

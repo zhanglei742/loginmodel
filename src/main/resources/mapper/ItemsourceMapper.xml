@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ItemsourceMapper">
+  <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.Itemsource">
+    <id column="menukey" jdbcType="INTEGER" property="menukey" />
+    <result column="itemid" jdbcType="INTEGER" property="itemid" />
+    <result column="sourthUrl" jdbcType="VARCHAR" property="sourthurl" />
+    <result column="sourthname" jdbcType="VARCHAR" property="sourthname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    menukey, itemid, sourthUrl, sourthname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from itemsource
+    where menukey = #{menukey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from itemsource
+    where menukey = #{menukey,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loginmodel.loginmodel.domain.Itemsource">
+    insert into itemsource (menukey, itemid, sourthUrl, 
+      sourthname)
+    values (#{menukey,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, #{sourthurl,jdbcType=VARCHAR}, 
+      #{sourthname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loginmodel.loginmodel.domain.Itemsource">
+    insert into itemsource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menukey != null">
+        menukey,
+      </if>
+      <if test="itemid != null">
+        itemid,
+      </if>
+      <if test="sourthurl != null">
+        sourthUrl,
+      </if>
+      <if test="sourthname != null">
+        sourthname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menukey != null">
+        #{menukey,jdbcType=INTEGER},
+      </if>
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="sourthurl != null">
+        #{sourthurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sourthname != null">
+        #{sourthname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loginmodel.loginmodel.domain.Itemsource">
+    update itemsource
+    <set>
+      <if test="itemid != null">
+        itemid = #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="sourthurl != null">
+        sourthUrl = #{sourthurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sourthname != null">
+        sourthname = #{sourthname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menukey = #{menukey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loginmodel.loginmodel.domain.Itemsource">
+    update itemsource
+    set itemid = #{itemid,jdbcType=INTEGER},
+      sourthUrl = #{sourthurl,jdbcType=VARCHAR},
+      sourthname = #{sourthname,jdbcType=VARCHAR}
+    where menukey = #{menukey,jdbcType=INTEGER}
+  </update>
+</mapper>
