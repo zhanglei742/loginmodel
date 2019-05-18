@@ -5,13 +5,20 @@
     <result column="itemid" jdbcType="INTEGER" property="itemid" />
     <result column="childid" jdbcType="INTEGER" property="childid" />
   </resultMap>
+  <resultMap id="BaseResultMap_item" type="com.loginmodel.loginmodel.domain.Item">
+    <id column="itemid" jdbcType="INTEGER" property="itemid" />
+    <result column="itemname" jdbcType="VARCHAR" property="itemname" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+  </resultMap>
   <insert id="insert" parameterType="com.loginmodel.loginmodel.domain.Itemchilds">
     insert into itemchilds (itemid, childid)
     values (#{itemid,jdbcType=INTEGER}, #{childid,jdbcType=INTEGER})
   </insert>
-  <select id="getchilditembyid" parameterType="java.lang.Integer" 
-  resultMap="BaseResultMap">
-  select * from Item where itemid = #{itemid,jdbcType=INTEGER}
+  <select id="selectchilditemsbyid" parameterType="java.lang.Integer" 
+  resultMap="BaseResultMap_item">
+  select item.itemid,itemname,parentid 
+  from item LEFT JOIN itemchilds on item.itemid=itemchilds.childid 
+  where itemchilds.itemid=#{itemid,jdbcType=INTEGER};
   </select>
   <insert id="insertSelective" parameterType="com.loginmodel.loginmodel.domain.Itemchilds">
     insert into itemchilds

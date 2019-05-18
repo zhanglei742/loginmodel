@@ -1,8 +1,12 @@
 package com.loginmodel.loginmodel.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.loginmodel.loginmodel.domain.Item;
 import com.loginmodel.loginmodel.domain.Itemsource;
 
-public class ItemsourceMapperImpl implements ItemsourceMapper {
+public class ItemsourceMapperImpl extends BaseInitDBhelper implements ItemsourceMapper {
 
 	@Override
 	public int deleteByPrimaryKey(Integer menukey) {
@@ -38,6 +42,16 @@ public class ItemsourceMapperImpl implements ItemsourceMapper {
 	public int updateByPrimaryKey(Itemsource record) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public ArrayList<Itemsource> selectByItemid(Integer itemid) {
+		// TODO Auto-generated method stub
+		List<Itemsource> source=new ArrayList<>();
+		String statement="ItemsourceMapper.selectByitemid";
+		source=session.selectList(statement, itemid);
+		session.close();
+		return (ArrayList<Itemsource>)source;
 	}
 
 }

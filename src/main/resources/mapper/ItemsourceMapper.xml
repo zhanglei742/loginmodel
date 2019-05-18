@@ -16,6 +16,12 @@
     from itemsource
     where menukey = #{menukey,jdbcType=INTEGER}
   </select>
+   <select id="selectByitemid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from itemsource
+    where itemid = #{itemid,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from itemsource
     where menukey = #{menukey,jdbcType=INTEGER}

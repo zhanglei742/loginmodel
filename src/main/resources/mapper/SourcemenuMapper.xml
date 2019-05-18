@@ -6,6 +6,16 @@
     <result column="menuname" jdbcType="VARCHAR" property="menuname" />
     <result column="menuurl" jdbcType="VARCHAR" property="menuurl" />
   </resultMap>
+  <sql id="Base_Column_List">
+    menukey, menuname,menuurl
+  </sql>
+  <select id="selectmenu" parameterType="java.lang.Integer" 
+  resultMap="BaseResultMap">
+   select
+    <include refid="Base_Column_List" />
+    from sourcemenu
+    where menukey = #{menukey,jdbcType=INTEGER}
+  </select>
   <insert id="insert" parameterType="com.loginmodel.loginmodel.domain.Sourcemenu">
     insert into sourcemenu (menukey, menuname, menuurl
       )
