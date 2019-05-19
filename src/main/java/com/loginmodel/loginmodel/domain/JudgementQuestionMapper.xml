@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loginmodel.loginmodel.service.JudgementQuestionMapper">
+  <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.JudgementQuestion">
+    <id column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="section_no" jdbcType="INTEGER" property="sectionNo" />
+    <result column="question_value" jdbcType="VARCHAR" property="questionValue" />
+    <result column="isright" jdbcType="INTEGER" property="isright" />
+    <result column="difficulty_rate" jdbcType="VARCHAR" property="difficultyRate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    question_id, item_id, section_no, question_value, isright, difficulty_rate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from judgement_question
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from judgement_question
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loginmodel.loginmodel.domain.JudgementQuestion">
+    insert into judgement_question (question_id, item_id, section_no, 
+      question_value, isright, difficulty_rate
+      )
+    values (#{questionId,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{sectionNo,jdbcType=INTEGER}, 
+      #{questionValue,jdbcType=VARCHAR}, #{isright,jdbcType=INTEGER}, #{difficultyRate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loginmodel.loginmodel.domain.JudgementQuestion">
+    insert into judgement_question
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="questionId != null">
+        question_id,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="sectionNo != null">
+        section_no,
+      </if>
+      <if test="questionValue != null">
+        question_value,
+      </if>
+      <if test="isright != null">
+        isright,
+      </if>
+      <if test="difficultyRate != null">
+        difficulty_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="questionId != null">
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionNo != null">
+        #{sectionNo,jdbcType=INTEGER},
+      </if>
+      <if test="questionValue != null">
+        #{questionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isright != null">
+        #{isright,jdbcType=INTEGER},
+      </if>
+      <if test="difficultyRate != null">
+        #{difficultyRate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loginmodel.loginmodel.domain.JudgementQuestion">
+    update judgement_question
+    <set>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionNo != null">
+        section_no = #{sectionNo,jdbcType=INTEGER},
+      </if>
+      <if test="questionValue != null">
+        question_value = #{questionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isright != null">
+        isright = #{isright,jdbcType=INTEGER},
+      </if>
+      <if test="difficultyRate != null">
+        difficulty_rate = #{difficultyRate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loginmodel.loginmodel.domain.JudgementQuestion">
+    update judgement_question
+    set item_id = #{itemId,jdbcType=INTEGER},
+      section_no = #{sectionNo,jdbcType=INTEGER},
+      question_value = #{questionValue,jdbcType=VARCHAR},
+      isright = #{isright,jdbcType=INTEGER},
+      difficulty_rate = #{difficultyRate,jdbcType=VARCHAR}
+    where question_id = #{questionId,jdbcType=INTEGER}
+  </update>
+</mapper>

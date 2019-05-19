@@ -3,6 +3,8 @@ package com.loginmodel.loginmodel.domain;
 import java.io.Serializable;
 
 public class Sourcemenu implements Serializable {
+	private Integer thisid;
+	
     private Integer menukey;
 
     private String menuname;
@@ -11,7 +13,15 @@ public class Sourcemenu implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getMenukey() {
+    public Integer getThisid() {
+		return thisid;
+	}
+
+	public void setThisid(Integer thisid) {
+		this.thisid = thisid;
+	}
+
+	public Integer getMenukey() {
         return menukey;
     }
 

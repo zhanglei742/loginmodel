@@ -63,9 +63,6 @@ public class DBhelper {
             {
                 return false;//有一项不匹配，则退出，返回失败
             }
-
-
-
         return true;//匹配成功
     }
     //表名冗余

@@ -18,7 +18,7 @@
         <javaModelGenerator targetPackage="com.loginmodel.loginmodel.domain"
             targetProject="loginmodel" />
             <!--数据库映射 mapper  -->
-        <sqlMapGenerator targetPackage="com.loginmodel.loginmodel.mapper"
+        <sqlMapGenerator targetPackage="com.loginmodel.loginmodel.domain"
             targetProject="loginmodel" />
             <!--生成的接口类  -->
         <javaClientGenerator targetPackage="com.loginmodel.loginmodel.service"
@@ -41,5 +41,20 @@
          enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false"></table> -->
+            <!--  <table tableName="choice_question"
+         	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+            <table tableName="choice_options"
+         	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table>
+            <table tableName="judgement_question"
+         	enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"></table> -->
+            
+            
+            
     </context>
 </generatorConfiguration>

@@ -8,5 +8,8 @@ public interface SourcemenuMapper {
     int insert(Sourcemenu record);
 
     int insertSelective(Sourcemenu record);
+    
+    Sourcemenu SelectByPrimaryKey(Integer thisid);
+    
     ArrayList<Sourcemenu> selectmenubykey(Integer menuid );
 }

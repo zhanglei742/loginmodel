@@ -2,13 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SourcemenuMapper">
   <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.Sourcemenu">
+  	<id column="thisid" jdbcType="INTEGER" property="thisid" />
     <result column="menukey" jdbcType="INTEGER" property="menukey" />
     <result column="menuname" jdbcType="VARCHAR" property="menuname" />
     <result column="menuurl" jdbcType="VARCHAR" property="menuurl" />
   </resultMap>
   <sql id="Base_Column_List">
-    menukey, menuname,menuurl
+   thisid, menukey, menuname,menuurl
   </sql>
+  <!--根据thisid主键，直接返回某一个唯一的目录  -->
+  <select id="selectbyprimarykey" parameterType="java.lang.Integer" 
+  resultMap="BaseResultMap">
+   select
+    <include refid="Base_Column_List" />
+    from sourcemenu
+    where menukey = #{thisid,jdbcType=INTEGER}
+  </select>
+  <!--根据路径查找其全部目录章节  -->
   <select id="selectmenu" parameterType="java.lang.Integer" 
   resultMap="BaseResultMap">
    select

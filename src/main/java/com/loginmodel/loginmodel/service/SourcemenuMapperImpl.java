@@ -30,4 +30,13 @@ public class SourcemenuMapperImpl extends BaseInitDBhelper implements Sourcemenu
 		return (ArrayList<Sourcemenu>)source;
 	}
 
+	@Override
+	public Sourcemenu SelectByPrimaryKey(Integer thisid) {
+		// TODO Auto-generated method stub
+		Sourcemenu a_menu=new Sourcemenu();
+		String statement="SourcemenuMapper.selectbyprimarykey";
+		a_menu=session.selectOne(statement,thisid);
+		return a_menu;
+	}
+
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loginmodel.loginmodel.service.ChoiceOptionsMapper">
+  <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.ChoiceOptions">
+    <id column="option_id" jdbcType="INTEGER" property="optionId" />
+    <result column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="option_value" jdbcType="VARCHAR" property="optionValue" />
+    <result column="isright" jdbcType="INTEGER" property="isright" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    option_id, question_id, option_value, isright
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from choice_options
+    where option_id = #{optionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from choice_options
+    where option_id = #{optionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loginmodel.loginmodel.domain.ChoiceOptions">
+    insert into choice_options (option_id, question_id, option_value, 
+      isright)
+    values (#{optionId,jdbcType=INTEGER}, #{questionId,jdbcType=INTEGER}, #{optionValue,jdbcType=VARCHAR}, 
+      #{isright,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loginmodel.loginmodel.domain.ChoiceOptions">
+    insert into choice_options
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="optionId != null">
+        option_id,
+      </if>
+      <if test="questionId != null">
+        question_id,
+      </if>
+      <if test="optionValue != null">
+        option_value,
+      </if>
+      <if test="isright != null">
+        isright,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="optionId != null">
+        #{optionId,jdbcType=INTEGER},
+      </if>
+      <if test="questionId != null">
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="optionValue != null">
+        #{optionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isright != null">
+        #{isright,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loginmodel.loginmodel.domain.ChoiceOptions">
+    update choice_options
+    <set>
+      <if test="questionId != null">
+        question_id = #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="optionValue != null">
+        option_value = #{optionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isright != null">
+        isright = #{isright,jdbcType=INTEGER},
+      </if>
+    </set>
+    where option_id = #{optionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loginmodel.loginmodel.domain.ChoiceOptions">
+    update choice_options
+    set question_id = #{questionId,jdbcType=INTEGER},
+      option_value = #{optionValue,jdbcType=VARCHAR},
+      isright = #{isright,jdbcType=INTEGER}
+    where option_id = #{optionId,jdbcType=INTEGER}
+  </update>
+</mapper>

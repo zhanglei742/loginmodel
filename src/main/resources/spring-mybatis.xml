@@ -22,6 +22,9 @@
         <mapper resource="mapper/ItemchildsMapper.xml"/>
         <mapper resource="mapper/ItemsourceMapper.xml"/>
         <mapper resource="mapper/SourcemenuMapper.xml"/>
+        <!-- <mapper resource="mapper/ChoiceOptionMapper.xml"/> -->
+        
+        
     </mappers>
     
 </configuration>

@@ -12,7 +12,7 @@ public class BaseInitDBhelper {
 
 	public BaseInitDBhelper() {//实例化的时候打开
 		String resource = "spring-mybatis.xml";
-		InputStream is = ItemMapperImpl.class.getClassLoader().getResourceAsStream(resource);
+		InputStream is = BaseInitDBhelper.class.getClassLoader().getResourceAsStream(resource);
 		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
 		session = sessionFactory.openSession();
 	}
