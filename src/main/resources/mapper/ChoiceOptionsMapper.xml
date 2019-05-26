@@ -16,6 +16,12 @@
     from choice_options
     where option_id = #{optionId,jdbcType=INTEGER}
   </select>
+  <select id="selectByQuestionId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from choice_options
+    where option_id = #{question_id,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from choice_options
     where option_id = #{optionId,jdbcType=INTEGER}

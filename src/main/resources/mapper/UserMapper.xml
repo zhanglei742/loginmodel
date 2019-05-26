@@ -7,7 +7,28 @@
       resultType="me.gacl.domain.User"就表示将查询结果封装成一个User类的对象返回
       User类就是users表所对应的实体类
       -->
-
+     <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.User">
+  	<id column="phonenumber" jdbcType="INTEGER" property="phonenumber" />
+    <result column="pwd" jdbcType="INTEGER" property="pwd" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="myemail" jdbcType="VARCHAR" property="myemail" />
+  </resultMap>
+  
+   <sql id="Base_Column_List">
+    phonenumber, pwd, name,myemail
+  </sql>
+	<select id="getUserByPhone" parameterType="com.loginmodel.loginmodel.domain.User" 
+	resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List" />
+	from users where phonenumber= #{phonenumber,jdbcType=INTEGER}
+	</select>
+	
+	
+	
+	
+	
+	
     <!--根据手机号查询得到一个user对象-->
     <select id="getUser" parameterType="long"
             resultType="com.loginmodel.loginmodel.domain.User">

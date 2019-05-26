@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.loginmodel.loginmodel.domain.Item;
 import com.loginmodel.loginmodel.domain.Itemchilds;
+import com.loginmodel.loginmodel.util.BaseInitDBhelper;
 
 public class ItemchildsMapperImpl extends BaseInitDBhelper implements ItemchildsMapper {
 

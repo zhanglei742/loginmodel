@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loginmodel.loginmodel.service.UserLearningSchemeMapper">
+  <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.UserLearningScheme">
+    <id column="source_menu_id" jdbcType="INTEGER" property="sourceMenuId" />
+    <result column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="menu_key" jdbcType="INTEGER" property="menuKey" />
+    <result column="sections_count" jdbcType="INTEGER" property="sectionsCount" />
+    <result column="sections_all" jdbcType="INTEGER" property="sectionsAll" />
+    <result column="item_suit_level" jdbcType="INTEGER" property="itemSuitLevel" />
+    <result column="section_now_id" jdbcType="INTEGER" property="sectionNowId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    source_menu_id, uuid, phone, menu_key, sections_count, sections_all, item_suit_level, 
+    section_now_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_learning_scheme
+    where source_menu_id = #{sourceMenuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_learning_scheme
+    where source_menu_id = #{sourceMenuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loginmodel.loginmodel.domain.UserLearningScheme">
+    insert into user_learning_scheme (source_menu_id, uuid, phone, 
+      menu_key, sections_count, sections_all, 
+      item_suit_level, section_now_id)
+    values (#{sourceMenuId,jdbcType=INTEGER}, #{uuid,jdbcType=CHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{menuKey,jdbcType=INTEGER}, #{sectionsCount,jdbcType=INTEGER}, #{sectionsAll,jdbcType=INTEGER}, 
+      #{itemSuitLevel,jdbcType=INTEGER}, #{sectionNowId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loginmodel.loginmodel.domain.UserLearningScheme">
+    insert into user_learning_scheme
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sourceMenuId != null">
+        source_menu_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="menuKey != null">
+        menu_key,
+      </if>
+      <if test="sectionsCount != null">
+        sections_count,
+      </if>
+      <if test="sectionsAll != null">
+        sections_all,
+      </if>
+      <if test="itemSuitLevel != null">
+        item_suit_level,
+      </if>
+      <if test="sectionNowId != null">
+        section_now_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sourceMenuId != null">
+        #{sourceMenuId,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="menuKey != null">
+        #{menuKey,jdbcType=INTEGER},
+      </if>
+      <if test="sectionsCount != null">
+        #{sectionsCount,jdbcType=INTEGER},
+      </if>
+      <if test="sectionsAll != null">
+        #{sectionsAll,jdbcType=INTEGER},
+      </if>
+      <if test="itemSuitLevel != null">
+        #{itemSuitLevel,jdbcType=INTEGER},
+      </if>
+      <if test="sectionNowId != null">
+        #{sectionNowId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loginmodel.loginmodel.domain.UserLearningScheme">
+    update user_learning_scheme
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="menuKey != null">
+        menu_key = #{menuKey,jdbcType=INTEGER},
+      </if>
+      <if test="sectionsCount != null">
+        sections_count = #{sectionsCount,jdbcType=INTEGER},
+      </if>
+      <if test="sectionsAll != null">
+        sections_all = #{sectionsAll,jdbcType=INTEGER},
+      </if>
+      <if test="itemSuitLevel != null">
+        item_suit_level = #{itemSuitLevel,jdbcType=INTEGER},
+      </if>
+      <if test="sectionNowId != null">
+        section_now_id = #{sectionNowId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where source_menu_id = #{sourceMenuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loginmodel.loginmodel.domain.UserLearningScheme">
+    update user_learning_scheme
+    set uuid = #{uuid,jdbcType=CHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      menu_key = #{menuKey,jdbcType=INTEGER},
+      sections_count = #{sectionsCount,jdbcType=INTEGER},
+      sections_all = #{sectionsAll,jdbcType=INTEGER},
+      item_suit_level = #{itemSuitLevel,jdbcType=INTEGER},
+      section_now_id = #{sectionNowId,jdbcType=INTEGER}
+    where source_menu_id = #{sourceMenuId,jdbcType=INTEGER}
+  </update>
+</mapper>

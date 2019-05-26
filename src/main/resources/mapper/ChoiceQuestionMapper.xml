@@ -17,6 +17,13 @@
     from choice_question
     where question_id = #{questionId,jdbcType=INTEGER}
   </select>
+  <Select id=selectQuestionsByItemid parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from choice_question
+    where item_id = #{item_id,jdbcType=INTEGER}
+  </Select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from choice_question
     where question_id = #{questionId,jdbcType=INTEGER}

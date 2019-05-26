@@ -1,6 +1,5 @@
 package com.loginmodel.loginmodel.controller;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.loginmodel.loginmodel.domain.Item;
 import com.loginmodel.loginmodel.domain.Itemsource;
 import com.loginmodel.loginmodel.domain.Sourcemenu;
-import com.loginmodel.loginmodel.domain.baseResponse;
 import com.loginmodel.loginmodel.service.ItemMapper;
 import com.loginmodel.loginmodel.service.ItemMapperImpl;
 import com.loginmodel.loginmodel.service.ItemchildsMapper;
@@ -22,8 +20,7 @@ import com.loginmodel.loginmodel.service.ItemsourceMapper;
 import com.loginmodel.loginmodel.service.ItemsourceMapperImpl;
 import com.loginmodel.loginmodel.service.SourcemenuMapper;
 import com.loginmodel.loginmodel.service.SourcemenuMapperImpl;
-
-import net.minidev.json.reader.JsonWriter;
+import com.loginmodel.loginmodel.util.baseResponse;
 
 @RestController
 @RequestMapping("/main")
@@ -32,23 +29,23 @@ public class ItemController {
 	@RequestMapping("/getitembyid")
 	@ResponseBody
 	public baseResponse<Item> getitembyid(HttpServletRequest req, HttpServletResponse rep) throws Exception {
-		Item item = new Item();
-		int result = 0;
-		int size = 0;
-		String message = "success";
+		baseResponse<Item> response = new baseResponse<>();
+		Item data = new Item();
+
 		if (req.getParameter("itemid") != null) {
 			ItemMapper itemMapper = new ItemMapperImpl();
-			item = itemMapper.selectByPrimaryKey(Integer.parseInt(req.getParameter("itemid")));
-			result = 1;
-			size = 1;
-			if (item == null) {
-				result = 0;
-				size = 0;
-				message = "NoDataRecorded";
+			data = itemMapper.selectByPrimaryKey(Integer.parseInt(req.getParameter("itemid")));
+
+			if (data == null) {
+				response.error = "NoDataRecorded";
+			} else {
+				response.setResult(1);
+				response.setCount(1);
+				response.setData(data);
 			}
 		} else
-			message = "errorinput";
-		return new baseResponse<Item>(result, size, item, message);
+			response.error = "errorinput";
+		return response;
 
 	}
 
@@ -56,91 +53,92 @@ public class ItemController {
 	@ResponseBody
 	public baseResponse<ArrayList<Item>> getchilditemsbyid(HttpServletRequest req, HttpServletResponse rep)
 			throws Exception {
-		ArrayList<Item> childs = new ArrayList<>();
-		int result = 0;
-		int size = 0;
-		String message = "success";
+		baseResponse<ArrayList<Item>> response = new baseResponse<>();
+		ArrayList<Item> data = new ArrayList<>();
+
 		if (req.getParameter("itemid") != null) {
 			ItemchildsMapper op = new ItemchildsMapperImpl();
-			childs = op.selectchilditemsbyid(Integer.parseInt(req.getParameter("itemid")));
-			size = childs.size();
-			result = 1;
-			if (size <= 0) {
-				result = 0;
-				message = "NoDataRecorded";
+			data = op.selectchilditemsbyid(Integer.parseInt(req.getParameter("itemid")));
+			if (data.size() <= 0) {
+				response.error = "NoDataRecorded";
+			} else {
+				response.setResult(1);
+				response.setCount(data.size());
+				response.setData(data);
 			}
-		} else
-			message = "errorinput";
 
-		baseResponse<ArrayList<Item>> response = new baseResponse<>(result, size, childs, message);
+		} else {
+			response.error = "errorinput";
+		}
+
 		return response;
 	}
 
 	@RequestMapping("/getitemsource")
 	@ResponseBody
-	public baseResponse<ArrayList<Itemsource>> getitemsource(HttpServletRequest req, HttpServletResponse rep)
-			throws Exception {
-		ArrayList<Itemsource> source = new ArrayList<>();
-		int result = 0;
-		int size = 0;
-		String message = "success";
+	public baseResponse<ArrayList<Itemsource>> getitemsource(HttpServletRequest req, HttpServletResponse rep) {
+		baseResponse<ArrayList<Itemsource>> response = new baseResponse<>();
+		ArrayList<Itemsource> data = new ArrayList<>();
+
 		if (req.getParameter("itemid") != null) {
 			ItemsourceMapper op = new ItemsourceMapperImpl();
-			source = op.selectByItemid(Integer.parseInt(req.getParameter("itemid")));
-			size = source.size();
-			result = 1;
-			if (size <= 0) {
-				result = 0;
-				message = "NoDataRecorded";
+			data = op.selectByItemid(Integer.parseInt(req.getParameter("itemid")));
+
+			if (data.size() <= 0) {
+				response.error = "NoDataRecorded";
+			} else {
+				response.setResult(1);
+				response.setCount(data.size());
+				response.setData(data);
 			}
-		} else
-			message = "errorinput";
-		baseResponse<ArrayList<Itemsource>> response = new baseResponse<>(result, size, source, message);
+		} else {
+			response.error = "errorinput";
+		}
 		return response;
 	}
 
 	@RequestMapping("/getsourcemenu")
 	@ResponseBody
-	public baseResponse<ArrayList<Sourcemenu>> getsourcemenu(HttpServletRequest req, HttpServletResponse rep)
-			throws Exception {
-		ArrayList<Sourcemenu> source = new ArrayList<>();
-		int result = 0;
-		int size = 0;
-		String message = "success";
+	public baseResponse<ArrayList<Sourcemenu>> getsourcemenu(HttpServletRequest req, HttpServletResponse rep) {
+		baseResponse<ArrayList<Sourcemenu>> response = new baseResponse<>();
+		ArrayList<Sourcemenu> data = new ArrayList<>();
 		if (req.getParameter("menukey") != null) {
 			SourcemenuMapper op = new SourcemenuMapperImpl();
-			source = op.selectmenubykey(Integer.parseInt(req.getParameter("menukey")));
-			size = source.size();
-			result = 1;
-			if (size <= 0) {
-				result = 0;
-				message = "NoDataRecorded";
+			data = op.selectmenubykey(Integer.parseInt(req.getParameter("menukey")));
+
+			if (data.size() <= 0) {
+				response.error = "NoDataRecorded";
+			} else {
+				response.setResult(1);
+				response.setCount(data.size());
+				response.setData(data);
 			}
-		} else
-			message = "errorinput";
-		baseResponse<ArrayList<Sourcemenu>> response = new baseResponse<>(result, size, source, message);
+		} else {
+			response.error = "errorinput";
+		}
 		return response;
 	}
 
 	@RequestMapping("/searchonemenu")
 	@ResponseBody
 	public baseResponse<Sourcemenu> searchonemenu(HttpServletRequest req, HttpServletResponse rep) throws Exception {
-		baseResponse<Sourcemenu> myresponce = new baseResponse<>();
-		Sourcemenu onemenu = new Sourcemenu();
+		baseResponse<Sourcemenu> response = new baseResponse<>();
+		Sourcemenu data = new Sourcemenu();
 
 		if (req.getParameter("onemenuid") != null) {
 			SourcemenuMapper op = new SourcemenuMapperImpl();
-			onemenu = op.SelectByPrimaryKey(Integer.parseInt(req.getParameter("onemenuid")));
-			myresponce.setCount(1);
-			myresponce.setResult(1);
-			if (onemenu == null) {
-				myresponce.setResult(0);
-				myresponce.setCount(0);
-				myresponce.setError("NoDataRecorded");
+			data = op.SelectByPrimaryKey(Integer.parseInt(req.getParameter("onemenuid")));
+
+			if (data == null) {
+				response.setError("NoDataRecorded");
+			} else {
+				response.setResult(1);
+				response.setCount(1);
+				response.setData(data);
 			}
 		} else
-			myresponce.setError("errorinput");
-		return myresponce;
+			response.setError("errorinput");
+		return response;
 	}
 
 }

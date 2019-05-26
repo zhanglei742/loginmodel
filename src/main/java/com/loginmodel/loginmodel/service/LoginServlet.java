@@ -9,4 +9,5 @@ public interface LoginServlet {
 	public boolean PhoneExist(long phone);
 	public String AddUser(long phone, String pwd);
 	public boolean UpdateUserInfo(long phone, User user);
+	public User LoginByPwd(long phone);
 }

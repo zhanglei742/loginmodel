@@ -1,5 +1,8 @@
 package com.loginmodel.loginmodel.service;
 
+
+import java.util.ArrayList;
+
 import com.loginmodel.loginmodel.domain.ChoiceOptions;
 
 public interface ChoiceOptionsMapper {
@@ -14,4 +17,8 @@ public interface ChoiceOptionsMapper {
     int updateByPrimaryKeySelective(ChoiceOptions record);
 
     int updateByPrimaryKey(ChoiceOptions record);
+    
+    ArrayList<ChoiceOptions> selectByQuestionId(Integer questionid);
+    
+    
 }

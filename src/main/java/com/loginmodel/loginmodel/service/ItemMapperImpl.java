@@ -1,6 +1,7 @@
 package com.loginmodel.loginmodel.service;
 
 import com.loginmodel.loginmodel.domain.Item;
+import com.loginmodel.loginmodel.util.BaseInitDBhelper;
 
 public class ItemMapperImpl extends BaseInitDBhelper implements ItemMapper {
 

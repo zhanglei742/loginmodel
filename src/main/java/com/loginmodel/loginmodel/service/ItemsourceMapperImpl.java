@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.loginmodel.loginmodel.domain.Item;
 import com.loginmodel.loginmodel.domain.Itemsource;
+import com.loginmodel.loginmodel.util.BaseInitDBhelper;
 
 public class ItemsourceMapperImpl extends BaseInitDBhelper implements ItemsourceMapper {
 

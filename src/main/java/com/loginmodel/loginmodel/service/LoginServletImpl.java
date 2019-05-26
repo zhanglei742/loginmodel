@@ -1,12 +1,13 @@
 package com.loginmodel.loginmodel.service;
 
 import com.loginmodel.loginmodel.domain.*;
+import com.loginmodel.loginmodel.util.BaseInitDBhelper;
 import com.loginmodel.loginmodel.dao.DBhelper;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginServletImpl implements LoginServlet
+public class LoginServletImpl extends BaseInitDBhelper implements LoginServlet
 { 	String tablename="users";
 	String column="phonenumber";
 	String column2="pwd";
@@ -58,5 +59,15 @@ public class LoginServletImpl implements LoginServlet
 
 		return true;
 	}
-
+	public User LoginByPwd(long phone)
+	{
+		User user=new User();
+		String statement="UserMapper.getUserByPhone";
+		user=session.selectOne(statement,phone);
+		session.close();
+		return user;
+	}
+	
+	
+	
 };

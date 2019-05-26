@@ -1,4 +1,4 @@
-package com.loginmodel.loginmodel.service;
+package com.loginmodel.loginmodel.util;
 
 import java.io.InputStream;
 
