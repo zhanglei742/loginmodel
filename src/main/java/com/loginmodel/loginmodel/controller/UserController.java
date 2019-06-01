@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/start")
 public class UserController {
+
 	//发送验证码
 	@RequestMapping("/sendcode")
 	@ResponseBody
@@ -23,14 +24,17 @@ public class UserController {
 		//String webphone ="130";
 		//String weblocation ="1";
 		System.out.println("后端接受用户第一次传来的信息");
+		System.out.println("匹配验证码信息：用户第一次传来的手机号为：" + webphone + "；功能位置：" + weblocation);
 
 		//======添加service层
 		VerificationCodeServlet verificationCode = new VerificationCodeServletImpl();
 		if (verificationCode.SendCode(webphone, weblocation)) {
 			//返回1表明验证码无误并成功
+
 			return "1";
 		} else
 			//返回1表明验证码输入错误
+
 			return "0";
 
 	}
@@ -39,21 +43,22 @@ public class UserController {
 	@ResponseBody
 	public String CheckCode(HttpServletRequest request, HttpServletResponse response)throws Exception
 	{
-		//Integer phone, Integer location, Integer code
-//		String  phone1 ="130";
-//		String location2 ="1";
-//		String code3 = "4321";
 		String secondphone =request.getParameter("phonenumber");
 		String secondlocation =request.getParameter("location");
 		String secondcode =request.getParameter("code");
 		System.out.println("匹配验证码信息：用户第二次传来的手机号为：" + secondphone + "；功能位置：" + secondlocation+ "；验证码：" + secondcode);
-
 		VerificationCodeServlet verificationCode = new VerificationCodeServletImpl();
 		if (verificationCode.CheckCode(secondphone, secondlocation,secondcode)) {
-			return "传给前端：信息已经匹配";
+			//手机号、验证码正确，返回1
+			//confirm="1";
+			return "1";
 		} else
-			return "传给前端：信息不匹配";
+			//手机号、验证码正确，返回0
+			//confirm="0";
+			return "0";
+
 	}
+
 	@RequestMapping("/login")
 	@ResponseBody
 	//注解方式获取参数
@@ -64,6 +69,7 @@ public class UserController {
 		//确实service层
 		LoginServlet op = new LoginServletImpl();
 		if (op.MatchInfo(username, pass)) {
+
 			return "1";
 		} else
 			return "0";
@@ -97,7 +103,6 @@ public class UserController {
 		} else
 			//返回1表明忘记密码修改失败
 			return "0";
-
 	}
 
 	//mybatis新增
@@ -112,9 +117,9 @@ public class UserController {
 		LoginServlet op = new LoginServletImpl();
 		System.out.println(phone+" : 号码是否存在?");
 		if (op.PhoneExist(phone)) {
-			return phone+" : 存在";
+			return "1";
 		} else
-			return phone+": 不存在";
+			return "0";
 	}
 	@RequestMapping("/adduser")
 	@ResponseBody

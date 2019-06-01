@@ -60,7 +60,6 @@ public class VerificationCodeServletImpl implements VerificationCodeServlet {
 	public boolean CheckCode(String phone, String location,String code) {
 		// TODO Auto-generated method stub
 		boolean returnweb = false;
-		try {
 			//得到 前端发送来的手机号、位置、验证码 set get
 			//根据手机号、位置，获得redis数据库的验证码
 			JedisPoolUtils pool = new JedisPoolUtils();
@@ -91,11 +90,6 @@ public class VerificationCodeServletImpl implements VerificationCodeServlet {
 			pool.closePool();
 			jedis.close();
 
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
 
 		return  returnweb;
 	}

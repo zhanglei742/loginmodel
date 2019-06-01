@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ExpertMapper">
+    <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.Expert">
+        <result column="expert_id" jdbcType="INTEGER" property="expertId" />
+        <result column="expert_headpicture" jdbcType="VARCHAR" property="expertHeadpicture" />
+        <result column="expert_position" jdbcType="VARCHAR" property="expertPosition" />
+        <result column="expert_field" jdbcType="VARCHAR" property="expertField" />
+        <result column="expert_answercount" jdbcType="INTEGER" property="expertAnswercount" />
+        <result column="expert_name" jdbcType="VARCHAR" property="expertName" />
+    </resultMap>
+
+
+</mapper>

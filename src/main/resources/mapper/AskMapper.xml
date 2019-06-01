@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AskMapper">
+    <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.Ask">
+    <result column="ask_id" jdbcType="INTEGER" property="askId" />
+    <result column="ask_name" jdbcType="VARCHAR" property="askName" />
+    <result column="ask_time" jdbcType="TIMESTAMP" property="askTime" />
+    <result column="ask_to_person" jdbcType="VARCHAR" property="askToPerson" />
+    <result column="question_title" jdbcType="VARCHAR" property="questionTitle" />
+    <result column="question_detail" jdbcType="VARCHAR" property="questionDetail" />
+    <result column="question_share" jdbcType="INTEGER" property="questionShare" />
+     <result column="question_id" jdbcType="VARCHAR" property="questionId" />
+</resultMap>
+
+    <!--对ask表进行添加-->
+    <insert id="askInsert" parameterType="com.loginmodel.loginmodel.domain.Ask" >
+      insert into ask(ask_name,ask_time,ask_to_person,question_title,question_detail,question_id)
+      values(#{askName},#{askTime},#{askToPerson},#{questionTitle},#{questionDetail},#{questionId})
+    </insert>
+    <!--对问题分享人数进行更新-->
+    <update id="sharaNumber" parameterType="java.lang.String" >
+      update ask set question_share=question_share+1 where question_id=#{questionId}
+    </update>
+
+</mapper>

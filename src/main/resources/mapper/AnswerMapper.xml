@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AnswerMapper">
+    <resultMap id="BaseResultMap" type="com.loginmodel.loginmodel.domain.Answer">
+        <result column="answer_id" jdbcType="INTEGER" property="answerId" />
+        <result column="answer_name" jdbcType="VARCHAR" property="answerName" />
+        <result column="answer_time" jdbcType="TIMESTAMP" property="answerTime" />
+        <result column="answer_to_person" jdbcType="VARCHAR" property="answerToPerson" />
+        <result column="question_id" jdbcType="VARCHAR" property="questionId" />
+        <result column="answer_money" jdbcType="VARCHAR" property="answerMoney" />
+        <result column="answer_value" jdbcType="VARCHAR" property="answerValue" />
+        <result column="answer_information" jdbcType="VARCHAR" property="answerInformation" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    answer_id,answer_name,answer_time,answer_to_person,question_id,answer_information
+  </sql>
+    <!--对answer表进行添加-->
+    <insert id="answerInsert" parameterType="com.loginmodel.loginmodel.domain.Answer" >
+      insert into answer(answer_name,answer_time,answer_to_person,question_id,answer_information)
+      values(#{answerName},#{answerTime},#{answerToPerson},#{questionId},#{answerInformation})
+    </insert>
+    <!--查询ask表中所有的数据，返回到前端-->
+    <select id="selectAllAnswer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+         FROM answer
+    </select>
+
+    <!--对专家表的回答数量进行更新-->
+    <update id="updateExpertCount" parameterType="java.lang.String" >
+      update expert set expert_answercount=expert_answercount+1 where expert_name=#{answerName}
+    </update>
+
+    <!-- !&#45;&#45;对ask表进行添加&ndash;&gt;
+        <insert id="askInsert" parameterType="com.loginmodel.loginmodel.domain.Ask" >
+          insert into ask(askname,asktime,asktoperson,questiontitle,questiondetail)
+          values(#{askname},#{asktime},#{asktoperson},#{questiontitle},#{questiondetail})
+        </insert>
+        &lt;!&ndash;查询ask表中所有的数据，返回到前端&ndash;&gt;
+        <select id="selectAll" resultType="com.loginmodel.loginmodel.domain.Ask">
+            SELECT * FROM ask
+        </select>-->
+
+
+</mapper>
